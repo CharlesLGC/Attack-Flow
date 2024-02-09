@@ -1,0 +1,57 @@
+version: "3.8"
+services:
+  cloudflare:
+    image: cloudflare/cloudflared:2023.8.2
+    restart: unless-stopped
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+    command: tunnel --no-autoupdate run
+
+  server:
+    build: ./server
+    container_name: server
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./server:/app
+      - /server/node_modules
+    depends_on:
+      db:
+        condition: service_healthy
+  client:
+    build: ./client
+    container_name: client
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    stdin_open: true
+    tty: true
+    depends_on:
+      - server
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      - MYSQL_DB=attackflow
+      - MYSQL_USE=root
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_HOST=127.0.0.1
+    ports:
+      - '3306:3306'
+    volumes:
+      - db:/var/lib/mysql
+      - ./db/init:/docker-entrypoint-initdb.d/
+    expose:
+      - '3306'
+    healthcheck:
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      test: ["CMD", "mysqladmin", "ping"]
+    depends_on:
+      - cloudflare
+volumes:
+  db:
+    driver: local

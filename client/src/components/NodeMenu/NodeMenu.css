@@ -1,0 +1,4 @@
+.node-menu {
+  height: calc(100vh - 340px);
+  overflow-y: scroll;
+}

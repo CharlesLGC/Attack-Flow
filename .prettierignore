@@ -1,0 +1,4 @@
+# Only disable prettier for javascript related files
+**/*.jsx
+**/*.js
+**/*.yml

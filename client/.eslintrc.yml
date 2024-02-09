@@ -1,0 +1,32 @@
+env:
+  browser: true
+  commonjs: true
+  es2021: true
+  jest: true
+extends:
+  - airbnb-base
+  - plugin:react/recommended
+  - plugin:react/jsx-runtime
+  - plugin:react-hooks/recommended
+  - plugin:prettier/recommended
+parserOptions:
+  ecmaFeatures: {
+    jsx: true,
+  }
+  ecmaVersion: latest
+  sourceType: module
+settings:
+  react:
+    version: '18.2'
+  "import/resolver": {
+    "node": {
+      "extensions": [".js", ".jsx", ".ts", ".tsx"]
+    }
+  }
+plugins:
+  - react-refresh
+rules:
+  "react-refresh/only-export-components": [
+    "warn",
+    { allowConstantExport: true },
+  ]

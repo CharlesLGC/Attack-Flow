@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  [type='text']:focus,
+  [type='email']:focus,
+  [type='url']:focus,
+  [type='password']:focus,
+  [type='number']:focus,
+  [type='date']:focus,
+  [type='datetime-local']:focus,
+  [type='month']:focus,
+  [type='search']:focus,
+  [type='tel']:focus,
+  [type='time']:focus,
+  [type='week']:focus,
+  [multiple]:focus,
+  textarea:focus,
+  select:focus {
+      --tw-ring-color: initial;
+      border-color: var(--tw-ring-color);
+  }
+
+  [type="checkbox"],
+  [type="radio"] {
+      color: initial;
+  }
+
+  [type="checkbox"]:focus,
+  [type="radio"]:focus {
+      --tw-ring-color: initial;
+  }
+
+  button:focus,
+  a:focus {
+      box-shadow: none;
+      border-color: #f8f8f8;
+      outline: none;
+  }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+body {
+  color: black !important;
+}

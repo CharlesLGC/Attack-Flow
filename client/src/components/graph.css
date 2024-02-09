@@ -1,0 +1,4 @@
+.graph-canvas {
+  height: calc(100vh - 64px);
+  display: flex;
+}
